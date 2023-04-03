@@ -32,6 +32,7 @@ export default function SearchSquare(props: Props) {
       onFocus={reset}
       id={`search${props.id}`}
       autoFocus={props.id === focus}
+      autoComplete="off"
       // className="w-6 h-6 text-center outline outline-2"
       className="w-6 h-6 text-center rounded border-black border-solid border-2 focus:outline-none "
     />
