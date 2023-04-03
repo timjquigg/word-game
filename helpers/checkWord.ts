@@ -1,28 +1,23 @@
-type letterCheck = {
-  [key: string]: "correct" | "absent" | "present";
-};
-
 export default function checkWord(
-  guess: string,
+  guess: string[],
   target: string
-): letterCheck[] {
-  const guessArr = guess.split("");
+): LetterCheck[] {
   const targetArr = target.split("");
-  const response: letterCheck[] = [];
-  guessArr.forEach((letter, index) => {
+  const response: LetterCheck[] = [];
+  guess.forEach((letter, index) => {
     if (targetArr[index] === letter) {
-      const result: letterCheck = {};
+      const result: LetterCheck = {};
       result[letter] = "correct";
       response.push(result);
       return;
     }
     if (targetArr.indexOf(letter) < 0) {
-      const result: letterCheck = {};
+      const result: LetterCheck = {};
       result[letter] = "absent";
       response.push(result);
       return;
     }
-    const result: letterCheck = {};
+    const result: LetterCheck = {};
     result[letter] = "present";
     response.push(result);
     return;

@@ -11,8 +11,10 @@ export default function Search() {
 
   return (
     <>
-      <InputProvider>{searchSquares}</InputProvider>
-      <SubmitButton>Submit</SubmitButton>
+      <InputProvider>
+        {searchSquares}
+        <SubmitButton>Submit</SubmitButton>
+      </InputProvider>
     </>
   );
 }
