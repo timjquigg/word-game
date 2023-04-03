@@ -12,8 +12,12 @@ export default function Search() {
   return (
     <>
       <InputProvider>
-        {searchSquares}
-        <SubmitButton>Submit</SubmitButton>
+        <div className="flex flex-col justify-center content-center">
+          <div className="flex justify-center space-x-3 my-3">
+            {searchSquares}
+          </div>
+          <SubmitButton>Submit</SubmitButton>
+        </div>
       </InputProvider>
     </>
   );

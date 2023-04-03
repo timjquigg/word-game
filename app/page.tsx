@@ -6,12 +6,9 @@ import AttemptsProvider from "@/providers/attemptsProvider";
 import Attempts from "@/components/attempts";
 
 export default function Home() {
-  const target = "hello";
-
   return (
     <AttemptsProvider>
       <main>
-        <p>{target}</p>
         <Attempts />
         <Search />
         {/* <div style={{ display: "flex" }}>{checkMap}</div> */}

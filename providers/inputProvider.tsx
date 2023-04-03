@@ -27,7 +27,7 @@ export default function InputProvider(props: Props) {
   const [input, setInput] = useState<string[]>(Array(5).fill(""));
   const { updateAttempts } = useContext(attemptsContext);
 
-  const answer = "hello";
+  const answer = "hello".toUpperCase();
 
   const updateFocus = (id: number) => {
     setFocus(id);

@@ -22,6 +22,5 @@ export default function checkWord(
     response.push(result);
     return;
   });
-  console.log(response);
   return response;
 }

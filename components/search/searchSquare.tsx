@@ -11,8 +11,9 @@ export default function SearchSquare(props: Props) {
   const [value, setValue] = useState(input[props.id]);
 
   const handleChange = (val: string) => {
-    setValue(val);
-    updateinput(props.id, val);
+    const uppcaseVal = val.toUpperCase();
+    setValue(uppcaseVal);
+    updateinput(props.id, uppcaseVal);
     updateFocus(props.id + 1);
   };
 
@@ -31,6 +32,8 @@ export default function SearchSquare(props: Props) {
       onFocus={reset}
       id={`search${props.id}`}
       autoFocus={props.id === focus}
+      // className="w-6 h-6 text-center outline outline-2"
+      className="w-6 h-6 text-center rounded border-black border-solid border-2 focus:outline-none "
     />
   );
 }
