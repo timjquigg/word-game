@@ -24,7 +24,7 @@ export const inputContext = createContext<InputContext>({
 
 export default function InputProvider(props: Props) {
   const [focus, setFocus] = useState(0);
-  const [input, setinput] = useState<string[]>(Array(5).fill(""));
+  const [input, setInput] = useState<string[]>(Array(5).fill(""));
   const { updateAttempts } = useContext(attemptsContext);
 
   const answer = "hello";
@@ -34,14 +34,20 @@ export default function InputProvider(props: Props) {
   };
 
   const updateinput = (id: number, letter: string) => {
-    setinput((prev) => {
+    setInput((prev) => {
       const newinput = [...prev];
       newinput[id] = letter;
       return newinput;
     });
   };
 
-  // const submitInput = (guess: string[], target: string) => {
+  const resetInput = () => {
+    setInput((prev) => {
+      const newInput = Array(5).fill("");
+      return newInput;
+    });
+  };
+
   const submitInput = (guess?: string[], target?: string) => {
     if (guess === undefined) {
       guess = input;
@@ -50,6 +56,8 @@ export default function InputProvider(props: Props) {
       target = answer;
     }
     updateAttempts(guess, target);
+    updateFocus(0);
+    resetInput();
   };
 
   useEffect(() => {

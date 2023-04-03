@@ -1,6 +1,6 @@
 "use client";
 import { inputContext } from "@/providers/inputProvider";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 type Props = {
   id: number;
@@ -15,6 +15,10 @@ export default function SearchSquare(props: Props) {
     updateinput(props.id, val);
     updateFocus(props.id + 1);
   };
+
+  useEffect(() => {
+    setValue(input[props.id]);
+  }, [input, props.id]);
 
   const reset = () => {
     setValue("");

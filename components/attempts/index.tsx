@@ -15,7 +15,11 @@ export default function Attempts() {
         </div>
       );
     });
-    return <div key={i}>{attempt}</div>;
+    return (
+      <div key={i} className="flex">
+        {attempt}
+      </div>
+    );
   });
 
   return <div>{attemptList}</div>;
