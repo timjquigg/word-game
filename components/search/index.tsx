@@ -33,11 +33,11 @@ export default function Search() {
   return (
     <>
       {!solved && answer && (
-        <div className="flex flex-col justify-center content-center">
-          <div className="flex justify-center space-x-3 my-3">
+        <div className="flex flex-col justify-center content-center text-center space-y-3">
+          <div className="flex justify-center space-x-3 my-3 ">
             {searchSquares}
-            {error && <p>Invalid word!</p>}
           </div>
+          {error && <p>No cheating! Please enter a real word</p>}
           <StyledButton callback={submit}>Submit</StyledButton>
         </div>
       )}
