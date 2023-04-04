@@ -4,7 +4,7 @@ type Props = {
 
 export default function Row(props: Props) {
   const letter = props.letter;
-  let style = "w-6 h-6 rounded ";
+  let style = "w-6 h-6 rounded-lg ";
   switch (Object.values(letter)[0]) {
     case "correct":
       style += "bg-green-500";

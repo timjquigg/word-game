@@ -34,7 +34,7 @@ export default function SearchSquare(props: Props) {
       autoFocus={props.id === focus}
       autoComplete="off"
       // className="w-6 h-6 text-center outline outline-2"
-      className="w-6 h-6 text-center rounded border-black border-solid border-2 focus:outline-none "
+      className="w-6 h-6 bg-transparent text-center rounded-lg border-black border-solid border-2 focus:outline-none focus:drop-shadow-xl focus:border-slate-50 "
     />
   );
 }

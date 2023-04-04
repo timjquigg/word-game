@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { attemptsContext } from "./attemptsProvider";
+import { answerContext } from "./answerProvider";
 
 type Props = {
   children?: React.ReactNode;
@@ -27,7 +28,7 @@ export default function InputProvider(props: Props) {
   const [input, setInput] = useState<string[]>(Array(5).fill(""));
   const { updateAttempts } = useContext(attemptsContext);
 
-  const answer = "hello".toUpperCase();
+  const { answer } = useContext(answerContext);
 
   const updateFocus = (id: number) => {
     setFocus(id);
