@@ -5,11 +5,16 @@ import Row from "./row";
 import { answerContext } from "@/providers/answerProvider";
 
 export default function Attempts() {
-  const { attempts } = useContext(attemptsContext);
+  const { attempts, solved, updateSolved } = useContext(attemptsContext);
   const { answer } = useContext(answerContext);
 
+  let check = false;
   const attemptList = attempts.map((attempt, i) => {
+    check = true;
     const rows = attempt.map((letter, j) => {
+      if (Object.values(letter)[0] !== "correct") {
+        check = false;
+      }
       return <Row key={`${i}${j}`} letter={letter} />;
     });
     return (
@@ -19,5 +24,9 @@ export default function Attempts() {
     );
   });
 
-  return <div>{answer && attemptList}</div>;
+  if (check && !solved) {
+    updateSolved();
+  }
+
+  return <div>{!solved && answer && attemptList}</div>;
 }

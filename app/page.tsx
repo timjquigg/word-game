@@ -7,6 +7,7 @@ import Attempts from "@/components/attempts";
 import AnswerProvider from "@/providers/answerProvider";
 import Introduction from "@/components/introduction";
 import InputProvider from "@/providers/inputProvider";
+import Complete from "@/components/complete";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <InputProvider>
             <Search />
           </InputProvider>
+          <Complete />
         </main>
       </AttemptsProvider>
     </AnswerProvider>

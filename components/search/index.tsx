@@ -4,10 +4,12 @@ import SearchSquare from "./searchSquare";
 import StyledButton from "../styledButton";
 import { inputContext } from "@/providers/inputProvider";
 import { answerContext } from "@/providers/answerProvider";
+import { attemptsContext } from "@/providers/attemptsProvider";
 
 export default function Search() {
   const { answer } = useContext(answerContext);
   const { submitInput } = useContext(inputContext);
+  const { solved } = useContext(attemptsContext);
   const searchSquares = Array(5)
     .fill("")
     .map((el, index) => {
@@ -20,7 +22,7 @@ export default function Search() {
 
   return (
     <>
-      {answer && (
+      {!solved && answer && (
         <div className="flex flex-col justify-center content-center">
           <div className="flex justify-center space-x-3 my-3">
             {searchSquares}
