@@ -1,6 +1,6 @@
 "use client";
 import checkWord from "@/helpers/checkWord";
-import { SetStateAction, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 type Props = {
   children?: React.ReactNode;
@@ -8,7 +8,7 @@ type Props = {
 
 interface AttemptsContext {
   attempts: LetterCheck[][];
-  updateAttempts: (guess: string[], target: string) => void;
+  updateAttempts: (guess: string[], target: string) => LetterCheck[];
   solved: boolean;
   updateSolved: () => void;
   resetAttempts: () => void;
@@ -16,7 +16,7 @@ interface AttemptsContext {
 
 export const attemptsContext = createContext<AttemptsContext>({
   attempts: [],
-  updateAttempts: () => {},
+  updateAttempts: () => [{}],
   solved: false,
   updateSolved: () => {},
   resetAttempts: () => {},
@@ -26,13 +26,14 @@ export default function AttemptsProvider(props: Props) {
   const [attempts, setAttempts] = useState<LetterCheck[][]>([]);
   const [solved, setSolved] = useState(false);
 
-  const updateAttempts = (guess: string[], target: string) => {
+  const updateAttempts = (guess: string[], target: string): LetterCheck[] => {
     const attempt = checkWord(guess, target);
     setAttempts((prev) => {
       const newAttempts = [...prev];
       newAttempts.push(attempt);
       return newAttempts;
     });
+    return attempt;
   };
 
   const resetAttempts = () => {

@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { attemptsContext } from "./attemptsProvider";
 import { answerContext } from "./answerProvider";
+import checkLetters from "@/helpers/checkLetters";
 
 type Props = {
   children?: React.ReactNode;
@@ -10,28 +11,59 @@ type Props = {
 interface InputContext {
   focus: number;
   input: string[];
+  keys: LetterCheck;
   // word: boolean;
   updateFocus: (increment: number) => void;
   resetFocus: () => void;
   updateInput: (letter: string) => void;
   submitInput: (guess?: string[], target?: string) => Promise<void>;
+  resetKeys: () => void;
 }
 
 export const inputContext = createContext<InputContext>({
   focus: 0,
   input: [],
+  keys: {},
   // word: false,
   updateFocus: () => {},
   resetFocus: () => {},
   updateInput: () => {},
   submitInput: () => Promise.resolve(),
+  resetKeys: () => {},
 });
 
 export default function InputProvider(props: Props) {
   const [focus, setFocus] = useState(0);
   const [input, setInput] = useState<string[]>(Array(5).fill(""));
-  // const [word, setWord] = useState(false);
-  const { updateAttempts } = useContext(attemptsContext);
+  const [keys, setKeys] = useState<LetterCheck>({
+    A: "absent",
+    B: "absent",
+    C: "absent",
+    D: "absent",
+    E: "absent",
+    F: "absent",
+    G: "absent",
+    H: "absent",
+    I: "absent",
+    J: "absent",
+    K: "absent",
+    L: "absent",
+    M: "absent",
+    N: "absent",
+    O: "absent",
+    P: "absent",
+    Q: "absent",
+    R: "absent",
+    S: "absent",
+    T: "absent",
+    U: "absent",
+    V: "absent",
+    W: "absent",
+    X: "absent",
+    Y: "absent",
+    Z: "absent",
+  });
+  const { updateAttempts, solved } = useContext(attemptsContext);
 
   const { answer } = useContext(answerContext);
 
@@ -79,12 +111,45 @@ export default function InputProvider(props: Props) {
     // setWord(valid);
 
     if (valid) {
-      updateAttempts(guess, target);
+      const attempt = updateAttempts(guess, target);
+      const updatedKeys = checkLetters(attempt, keys);
+      setKeys(updatedKeys);
       updateFocus(0);
       resetInput();
       return Promise.resolve();
     }
     return Promise.reject("invalid word");
+  };
+
+  const resetKeys = () => {
+    setKeys({
+      A: "absent",
+      B: "absent",
+      C: "absent",
+      D: "absent",
+      E: "absent",
+      F: "absent",
+      G: "absent",
+      H: "absent",
+      I: "absent",
+      J: "absent",
+      K: "absent",
+      L: "absent",
+      M: "absent",
+      N: "absent",
+      O: "absent",
+      P: "absent",
+      Q: "absent",
+      R: "absent",
+      S: "absent",
+      T: "absent",
+      U: "absent",
+      V: "absent",
+      W: "absent",
+      X: "absent",
+      Y: "absent",
+      Z: "absent",
+    });
   };
 
   useEffect(() => {
@@ -96,14 +161,20 @@ export default function InputProvider(props: Props) {
     document.getElementById("submit")?.focus();
   }, [focus]);
 
+  useEffect(() => {
+    resetKeys();
+  }, [solved]);
+
   const providerData = {
     focus,
     input,
+    keys,
     // word,
     updateFocus,
     resetFocus,
     updateInput,
     submitInput,
+    resetKeys,
   };
 
   return (
