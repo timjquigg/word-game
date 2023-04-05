@@ -6,7 +6,7 @@ export default async function getAnswer(): Promise<string> {
   return word;
 }
 
-const fetchAnswer = async (): Promise<string> => {
+export const fetchAnswer = async (): Promise<string> => {
   let valid = false;
 
   while (!valid) {
@@ -15,7 +15,6 @@ const fetchAnswer = async (): Promise<string> => {
       { cache: "no-store" }
     );
     const word = await res.json();
-    console.log(word);
     valid = await validate(word);
     if (valid) {
       return word;
