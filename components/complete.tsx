@@ -20,7 +20,9 @@ export default function Complete() {
       {solved && (
         <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
           <p>{`Congratulations! It took you ${attempts.length} attempts to get the word ${answer}.`}</p>
-          <StyledButton callback={playAgain}>Play again</StyledButton>
+          <div className="mx-auto">
+            <StyledButton callback={playAgain}>Play again</StyledButton>
+          </div>
         </div>
       )}
     </>

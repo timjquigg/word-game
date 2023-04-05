@@ -4,7 +4,7 @@ type Props = {
 
 export default function Letter(props: Props) {
   const letter = props.letter;
-  let style = "w-6 h-6 rounded-lg ";
+  let style = "w-7 h-7 rounded-lg flex justify-center items-center ";
   switch (Object.values(letter)[0]) {
     case "correct":
       style += "bg-green-500";
@@ -18,7 +18,7 @@ export default function Letter(props: Props) {
   }
   return (
     <div className={style}>
-      <p className="text-center">{Object.keys(letter)[0]}</p>
+      <p className="m-0">{Object.keys(letter)[0]}</p>
     </div>
   );
 }

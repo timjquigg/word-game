@@ -5,11 +5,12 @@ import StyledButton from "../styledButton";
 import { inputContext } from "@/providers/inputProvider";
 import { answerContext } from "@/providers/answerProvider";
 import { attemptsContext } from "@/providers/attemptsProvider";
+import Keyboard from "./keyboard";
 
 export default function Search() {
   const [error, setError] = useState(false);
   const { answer } = useContext(answerContext);
-  const { submitInput } = useContext(inputContext);
+  const { submitInput, updateFocus, resetFocus } = useContext(inputContext);
   const { solved } = useContext(attemptsContext);
   const searchSquares = Array(5)
     .fill("")
@@ -21,13 +22,19 @@ export default function Search() {
     submitInput()
       .then(() => {
         // console.log("resolve:");
+        resetFocus();
         setError(false);
       })
       .catch((err) => {
         // console.log("reject:");
         setError(true);
+        resetFocus();
         console.log(err);
       });
+  };
+
+  const backSpace = () => {
+    updateFocus(-1);
   };
 
   return (
@@ -38,7 +45,11 @@ export default function Search() {
             {searchSquares}
           </div>
           {error && <p>No cheating! Please enter a real word</p>}
-          <StyledButton callback={submit}>Submit</StyledButton>
+          <Keyboard />
+          <div className="flex flex-row justify-center space-x-3 my-3">
+            <StyledButton callback={backSpace}>Backspace</StyledButton>
+            <StyledButton callback={submit}>Submit</StyledButton>
+          </div>
         </div>
       )}
     </>

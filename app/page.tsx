@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <AnswerProvider>
       <AttemptsProvider>
-        <main>
+        <main className="container flex flex-col justify-between content-center mx-auto">
           <Introduction />
           <Attempts />
           <InputProvider>
