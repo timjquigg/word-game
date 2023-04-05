@@ -2,7 +2,7 @@ type Props = {
   letter: LetterCheck;
 };
 
-export default function Row(props: Props) {
+export default function Letter(props: Props) {
   const letter = props.letter;
   let style = "w-6 h-6 rounded-lg ";
   switch (Object.values(letter)[0]) {
