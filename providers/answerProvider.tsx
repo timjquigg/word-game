@@ -21,7 +21,6 @@ export default function AnswerProvider(props: Props) {
   const getNewAnswer = async () => {
     const res = await fetch("/api/answer");
     const word = await res.json();
-    console.log(word.word[0]);
     setAnswer(word.word[0].toUpperCase());
   };
 
