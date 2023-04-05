@@ -7,7 +7,7 @@ import { answerContext } from "@/providers/answerProvider";
 export default function Complete() {
   const { solved, attempts, resetAttempts, updateSolved } =
     useContext(attemptsContext);
-  const { getNewAnswer } = useContext(answerContext);
+  const { answer, getNewAnswer } = useContext(answerContext);
 
   const playAgain = () => {
     resetAttempts();
@@ -19,7 +19,7 @@ export default function Complete() {
     <>
       {solved && (
         <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
-          <p>{`Congratulations! You got the correct word in ${attempts.length} attempts.`}</p>
+          <p>{`Congratulations! It took you ${attempts.length} attempts to get the word ${answer}.`}</p>
           <StyledButton callback={playAgain}>Play again</StyledButton>
         </div>
       )}

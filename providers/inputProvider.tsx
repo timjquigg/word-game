@@ -10,22 +10,25 @@ type Props = {
 interface InputContext {
   focus: number;
   input: string[];
+  // word: boolean;
   updateFocus: (id: number) => void;
   updateinput: (id: number, letter: string) => void;
-  submitInput: (guess?: string[], target?: string) => void;
+  submitInput: (guess?: string[], target?: string) => Promise<void>;
 }
 
 export const inputContext = createContext<InputContext>({
   focus: 0,
   input: [],
+  // word: false,
   updateFocus: () => {},
   updateinput: () => {},
-  submitInput: () => {},
+  submitInput: () => Promise.resolve(),
 });
 
 export default function InputProvider(props: Props) {
   const [focus, setFocus] = useState(0);
   const [input, setInput] = useState<string[]>(Array(5).fill(""));
+  // const [word, setWord] = useState(false);
   const { updateAttempts } = useContext(attemptsContext);
 
   const { answer } = useContext(answerContext);
@@ -49,16 +52,30 @@ export default function InputProvider(props: Props) {
     });
   };
 
-  const submitInput = (guess?: string[], target?: string) => {
+  const submitInput = async (
+    guess?: string[],
+    target?: string
+  ): Promise<void> => {
     if (guess === undefined) {
       guess = input;
     }
     if (target === undefined) {
       target = answer;
     }
-    updateAttempts(guess, target);
-    updateFocus(0);
-    resetInput();
+    const res = await fetch("/api/check", {
+      method: "POST",
+      body: JSON.stringify(guess.join("")),
+    });
+    const { valid } = await res.json();
+    // setWord(valid);
+
+    if (valid) {
+      updateAttempts(guess, target);
+      updateFocus(0);
+      resetInput();
+      return Promise.resolve();
+    }
+    return Promise.reject("invalid word");
   };
 
   useEffect(() => {
@@ -70,7 +87,14 @@ export default function InputProvider(props: Props) {
     document.getElementById("submit")?.focus();
   }, [focus]);
 
-  const providerData = { focus, input, updateFocus, updateinput, submitInput };
+  const providerData = {
+    focus,
+    input,
+    // word,
+    updateFocus,
+    updateinput,
+    submitInput,
+  };
 
   return (
     <inputContext.Provider value={providerData}>
