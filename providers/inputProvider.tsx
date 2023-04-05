@@ -63,11 +63,11 @@ export default function InputProvider(props: Props) {
       target = answer;
     }
     const body = JSON.stringify(guess.join(""));
-    console.log(body);
     const res = await fetch("/api/check", {
       method: "POST",
       body: body,
     });
+
     const { valid } = await res.json();
     // setWord(valid);
 
