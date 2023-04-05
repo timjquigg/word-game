@@ -11,8 +11,9 @@ interface InputContext {
   focus: number;
   input: string[];
   // word: boolean;
-  updateFocus: (id: number) => void;
-  updateinput: (id: number, letter: string) => void;
+  updateFocus: (increment: number) => void;
+  resetFocus: () => void;
+  updateInput: (letter: string) => void;
   submitInput: (guess?: string[], target?: string) => Promise<void>;
 }
 
@@ -21,7 +22,8 @@ export const inputContext = createContext<InputContext>({
   input: [],
   // word: false,
   updateFocus: () => {},
-  updateinput: () => {},
+  resetFocus: () => {},
+  updateInput: () => {},
   submitInput: () => Promise.resolve(),
 });
 
@@ -33,11 +35,16 @@ export default function InputProvider(props: Props) {
 
   const { answer } = useContext(answerContext);
 
-  const updateFocus = (id: number) => {
-    setFocus(id);
+  const updateFocus = (increment: number) => {
+    setFocus((prev) => prev + increment);
   };
 
-  const updateinput = (id: number, letter: string) => {
+  const resetFocus = () => {
+    setFocus(0);
+  };
+
+  const updateInput = (letter: string) => {
+    const id = focus;
     setInput((prev) => {
       const newinput = [...prev];
       newinput[id] = letter;
@@ -94,7 +101,8 @@ export default function InputProvider(props: Props) {
     input,
     // word,
     updateFocus,
-    updateinput,
+    resetFocus,
+    updateInput,
     submitInput,
   };
 

@@ -7,15 +7,13 @@ type Props = {
 };
 
 export default function SearchSquare(props: Props) {
-  const { focus, input, updateFocus, updateinput } = useContext(inputContext);
+  const {
+    focus,
+    input,
+    updateFocus,
+    updateInput: updateinput,
+  } = useContext(inputContext);
   const [value, setValue] = useState(input[props.id]);
-
-  const handleChange = (val: string) => {
-    const uppcaseVal = val.toUpperCase();
-    setValue(uppcaseVal);
-    updateinput(props.id, uppcaseVal);
-    updateFocus(props.id + 1);
-  };
 
   useEffect(() => {
     setValue(input[props.id]);
@@ -26,15 +24,12 @@ export default function SearchSquare(props: Props) {
   };
 
   return (
-    <input
-      value={value}
-      onChange={(e) => handleChange(e.target.value)}
-      onFocus={reset}
+    <p
+      tabIndex={props.id}
       id={`search${props.id}`}
-      autoFocus={props.id === focus}
-      autoComplete="off"
-      // className="w-6 h-6 text-center outline outline-2"
-      className="w-6 h-6 bg-transparent text-center rounded-lg border-black border-solid border-2 focus:outline-none focus:drop-shadow-xl focus:border-slate-50 "
-    />
+      className="w-6 h-6 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2 focus:outline-none focus:drop-shadow-xl focus:border-slate-50 "
+    >
+      {value}
+    </p>
   );
 }

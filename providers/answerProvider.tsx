@@ -28,10 +28,6 @@ export default function AnswerProvider(props: Props) {
     setAnswer(word.word[0].toUpperCase());
   };
 
-  // useEffect(() => {
-  //   getNewAnswer();
-  // }, []);
-
   const providerData = { answer, getNewAnswer };
 
   return (

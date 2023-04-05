@@ -26,7 +26,9 @@ export default function Introduction() {
             wrong place it will be in a yellow box and if the letter is in the
             word and in the correct place it will have a green box.
           </p>
-          <StyledButton callback={playGame}>Play</StyledButton>
+          <div className="mx-auto">
+            <StyledButton callback={playGame}>Play</StyledButton>
+          </div>
         </div>
       )}
     </>

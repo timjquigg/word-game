@@ -8,6 +8,7 @@ import AnswerProvider from "@/providers/answerProvider";
 import Introduction from "@/components/introduction";
 import InputProvider from "@/providers/inputProvider";
 import Complete from "@/components/complete";
+import Keyboard from "@/components/search/keyboard";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <Attempts />
           <InputProvider>
             <Search />
+            {/* <Keyboard /> */}
           </InputProvider>
           <Complete />
         </main>
