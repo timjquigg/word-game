@@ -8,18 +8,16 @@ import AnswerProvider from "@/providers/answerProvider";
 import Introduction from "@/components/introduction";
 import InputProvider from "@/providers/inputProvider";
 import Complete from "@/components/complete";
-import Keyboard from "@/components/search/keyboard";
 
 export default function Home() {
   return (
     <AnswerProvider>
       <AttemptsProvider>
-        <main>
+        <main className="container flex flex-col justify-between content-center mx-auto">
           <Introduction />
           <Attempts />
           <InputProvider>
             <Search />
-            {/* <Keyboard /> */}
           </InputProvider>
           <Complete />
         </main>

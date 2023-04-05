@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import "./globals.css";
-import Title from "../components/title";
+import Banner from "../components/banner";
 
 export const metadata: Metadata = {
   title: "Word Game",
@@ -14,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-neutral-200">
-      <body>
-        <Title />
+      <body className="h-screen">
+        {/* <div id="banner" className="container mx-auto"> */}
+        <Banner />
+        {/* </div> */}
         <div>{children}</div>
       </body>
     </html>
