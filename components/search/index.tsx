@@ -47,8 +47,12 @@ export default function Search() {
           {error && <p>No cheating! Please enter a real word</p>}
           <Keyboard />
           <div className="flex flex-row justify-center space-x-3 my-3">
-            <StyledButton callback={backSpace}>Backspace</StyledButton>
-            <StyledButton callback={submit}>Submit</StyledButton>
+            <StyledButton id="backspace" callback={backSpace}>
+              Backspace
+            </StyledButton>
+            <StyledButton id="submit" callback={submit}>
+              Submit
+            </StyledButton>
           </div>
         </div>
       )}

@@ -68,7 +68,19 @@ export default function InputProvider(props: Props) {
   const { answer } = useContext(answerContext);
 
   const updateFocus = (increment: number) => {
-    setFocus((prev) => prev + increment);
+    setFocus((prev) => {
+      const newFocus = prev + increment;
+      if (newFocus < 0) {
+        return prev;
+      }
+
+      if (newFocus === answer.length) {
+        document.getElementById("submit")?.focus();
+        return prev;
+      }
+
+      return newFocus;
+    });
   };
 
   const resetFocus = () => {
@@ -152,14 +164,14 @@ export default function InputProvider(props: Props) {
     });
   };
 
-  useEffect(() => {
-    const nextBox = document.getElementById(`search${focus}`);
-    if (nextBox) {
-      nextBox.focus();
-      return;
-    }
-    document.getElementById("submit")?.focus();
-  }, [focus]);
+  // useEffect(() => {
+  //   const nextBox = document.getElementById(`search${focus}`);
+  //   if (nextBox) {
+  //     nextBox.focus();
+  //     return;
+  //   }
+  //   document.getElementById("submit")?.focus();
+  // }, [focus]);
 
   useEffect(() => {
     resetKeys();
