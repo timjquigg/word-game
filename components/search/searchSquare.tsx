@@ -23,12 +23,15 @@ export default function SearchSquare(props: Props) {
     setValue("");
   };
 
+  let style =
+    "w-7 h-7 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2  ";
+
+  if (focus === props.id) {
+    style += "outline-none drop-shadow-xl border-slate-50";
+  }
+
   return (
-    <p
-      tabIndex={props.id}
-      id={`search${props.id}`}
-      className="w-7 h-7 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2 focus:outline-none focus:drop-shadow-xl focus:border-slate-50 "
-    >
+    <p id={`search${props.id}`} className={style}>
       {value}
     </p>
   );

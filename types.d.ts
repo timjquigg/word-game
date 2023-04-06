@@ -1,4 +1,4 @@
-type LetterState = "correct" | "absent" | "present";
+type LetterState = "correct" | "absent" | "present" | null;
 
 interface LetterCheck extends Record<string, LetterState> {
   [key: Letter]: LetterState;

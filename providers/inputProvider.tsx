@@ -36,39 +36,51 @@ export default function InputProvider(props: Props) {
   const [focus, setFocus] = useState(0);
   const [input, setInput] = useState<string[]>(Array(5).fill(""));
   const [keys, setKeys] = useState<LetterCheck>({
-    A: "absent",
-    B: "absent",
-    C: "absent",
-    D: "absent",
-    E: "absent",
-    F: "absent",
-    G: "absent",
-    H: "absent",
-    I: "absent",
-    J: "absent",
-    K: "absent",
-    L: "absent",
-    M: "absent",
-    N: "absent",
-    O: "absent",
-    P: "absent",
-    Q: "absent",
-    R: "absent",
-    S: "absent",
-    T: "absent",
-    U: "absent",
-    V: "absent",
-    W: "absent",
-    X: "absent",
-    Y: "absent",
-    Z: "absent",
+    A: null,
+    B: null,
+    C: null,
+    D: null,
+    E: null,
+    F: null,
+    G: null,
+    H: null,
+    I: null,
+    J: null,
+    K: null,
+    L: null,
+    M: null,
+    N: null,
+    O: null,
+    P: null,
+    Q: null,
+    R: null,
+    S: null,
+    T: null,
+    U: null,
+    V: null,
+    W: null,
+    X: null,
+    Y: null,
+    Z: null,
   });
   const { updateAttempts, solved } = useContext(attemptsContext);
 
   const { answer } = useContext(answerContext);
 
   const updateFocus = (increment: number) => {
-    setFocus((prev) => prev + increment);
+    setFocus((prev) => {
+      const newFocus = prev + increment;
+      if (newFocus < 0) {
+        return prev;
+      }
+
+      if (newFocus === answer.length) {
+        document.getElementById("submit")?.focus();
+        return prev;
+      }
+
+      return newFocus;
+    });
   };
 
   const resetFocus = () => {
@@ -123,43 +135,43 @@ export default function InputProvider(props: Props) {
 
   const resetKeys = () => {
     setKeys({
-      A: "absent",
-      B: "absent",
-      C: "absent",
-      D: "absent",
-      E: "absent",
-      F: "absent",
-      G: "absent",
-      H: "absent",
-      I: "absent",
-      J: "absent",
-      K: "absent",
-      L: "absent",
-      M: "absent",
-      N: "absent",
-      O: "absent",
-      P: "absent",
-      Q: "absent",
-      R: "absent",
-      S: "absent",
-      T: "absent",
-      U: "absent",
-      V: "absent",
-      W: "absent",
-      X: "absent",
-      Y: "absent",
-      Z: "absent",
+      A: null,
+      B: null,
+      C: null,
+      D: null,
+      E: null,
+      F: null,
+      G: null,
+      H: null,
+      I: null,
+      J: null,
+      K: null,
+      L: null,
+      M: null,
+      N: null,
+      O: null,
+      P: null,
+      Q: null,
+      R: null,
+      S: null,
+      T: null,
+      U: null,
+      V: null,
+      W: null,
+      X: null,
+      Y: null,
+      Z: null,
     });
   };
 
-  useEffect(() => {
-    const nextBox = document.getElementById(`search${focus}`);
-    if (nextBox) {
-      nextBox.focus();
-      return;
-    }
-    document.getElementById("submit")?.focus();
-  }, [focus]);
+  // useEffect(() => {
+  //   const nextBox = document.getElementById(`search${focus}`);
+  //   if (nextBox) {
+  //     nextBox.focus();
+  //     return;
+  //   }
+  //   document.getElementById("submit")?.focus();
+  // }, [focus]);
 
   useEffect(() => {
     resetKeys();

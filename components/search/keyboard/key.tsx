@@ -19,6 +19,10 @@ export default function Key(props: Props) {
     style += "bg-yellow-500";
   }
 
+  if (keys[props.children] === "absent") {
+    style += "bg-red-500";
+  }
+
   const handleClick = () => {
     updateInput(props.children);
     updateFocus(1);
