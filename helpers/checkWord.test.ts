@@ -1,7 +1,7 @@
 import checkWord from "./checkWord";
 
 test("Returns expected value based on input when guess is correct", () => {
-  const guess = ["D", "O", "U", "M", "S"];
+  const guess: Letter[] = ["D", "O", "U", "M", "S"];
   const target = "DOUMS";
 
   const expectedOutput = [
@@ -18,7 +18,7 @@ test("Returns expected value based on input when guess is correct", () => {
 });
 
 test("Returns expected value based on input when guess is all incorrect", () => {
-  const guess = ["D", "O", "U", "M", "S"];
+  const guess: Letter[] = ["D", "O", "U", "M", "S"];
   const target = "PARTY";
 
   const expectedOutput = [
@@ -35,7 +35,7 @@ test("Returns expected value based on input when guess is all incorrect", () => 
 });
 
 test("Returns expected value based on input when guess has the right letters in the wrong order", () => {
-  const guess = ["D", "O", "U", "M", "S"];
+  const guess: Letter[] = ["D", "O", "U", "M", "S"];
   const target = "SDOUM";
 
   const expectedOutput = [
@@ -50,25 +50,8 @@ test("Returns expected value based on input when guess has the right letters in 
   expect(result).toEqual(expectedOutput);
 });
 
-// test("Returns expected value based on input when guess has duplicate letters, one in the correct spot and one in the incorrect spot", () => {
-//   const guess = ["O", "D", "O", "R", "S"];
-//   const target = "DOORS";
-
-//   const expectedOutput = [
-//     { O: "present" },
-//     { D: "present" },
-//     { O: "correct" },
-//     { R: "correct" },
-//     { S: "correct" },
-//   ];
-
-//   const result = checkWord(guess, target);
-
-//   expect(result).toEqual(expectedOutput);
-// });
-
 test("Returns expected value based on input when guess has duplicate letters, but the target does not. First of duplicates is in correct position.", () => {
-  const guess = ["D", "O", "O", "M", "S"];
+  const guess: Letter[] = ["D", "O", "O", "M", "S"];
   const target = "DOUMS";
 
   const expectedOutput = [
@@ -85,7 +68,7 @@ test("Returns expected value based on input when guess has duplicate letters, bu
 });
 
 test("Returns expected value based on input when guess has duplicate letters, but the target does not. First of the duplicates is not in the correct location and second duplicate is.", () => {
-  const guess = ["T", "E", "A", "S", "E"];
+  const guess: Letter[] = ["T", "E", "A", "S", "E"];
   const target = "TASSE";
 
   const expectedOutput = [
@@ -94,6 +77,23 @@ test("Returns expected value based on input when guess has duplicate letters, bu
     { A: "present" },
     { S: "correct" },
     { E: "correct" },
+  ];
+
+  const result = checkWord(guess, target);
+
+  expect(result).toEqual(expectedOutput);
+});
+
+test("Returns expected value based on input when guess has duplicate letters, but the target does not. Neither of the duplicates is in the correct location.", () => {
+  const guess: Letter[] = ["A", "R", "E", "A", "S"];
+  const target = "CLANG";
+
+  const expectedOutput = [
+    { A: "present" },
+    { R: "absent" },
+    { E: "absent" },
+    { A: "absent" },
+    { S: "absent" },
   ];
 
   const result = checkWord(guess, target);
