@@ -34,7 +34,8 @@ type Letter =
   | "W"
   | "X"
   | "Y"
-  | "Z";
+  | "Z"
+  | "";
 
 interface Occurences extends Record<string, number> {
   [key: Letter]: number;
