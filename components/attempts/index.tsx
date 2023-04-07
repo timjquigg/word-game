@@ -24,9 +24,13 @@ export default function Attempts() {
     );
   });
 
-  if (check && !solved) {
-    updateSolved();
+  if (!check && attempts.length === 6) {
+    updateSolved("no");
   }
 
-  return <div>{!solved && answer && attemptList}</div>;
+  if (check && solved === "incomplete") {
+    updateSolved("yes");
+  }
+
+  return <div>{solved === "incomplete" && answer && attemptList}</div>;
 }

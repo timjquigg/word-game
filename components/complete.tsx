@@ -11,16 +11,26 @@ export default function Complete() {
 
   const playAgain = () => {
     resetAttempts();
-    updateSolved();
+    updateSolved("incomplete");
     getNewAnswer();
   };
 
   return (
     <>
-      {solved && (
+      {solved === "yes" && (
         <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
           <p>{`Congratulations! It took you ${attempts.length} attempts to get the word ${answer}.`}</p>
-          <div className="mx-auto">
+          <div className="mx-auto my-8">
+            <StyledButton callback={playAgain}>Play again</StyledButton>
+          </div>
+        </div>
+      )}
+      {solved === "no" && (
+        <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
+          <p>You lose!</p>
+          <p>🥲🥲🥲🥲🥲🥲🥲🥲🥲</p>
+          <p>{`The word was ${answer}.`}</p>
+          <div className="mx-auto my-8">
             <StyledButton callback={playAgain}>Play again</StyledButton>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <AnswerProvider>
       <AttemptsProvider>
-        <main className="container flex flex-col justify-between content-center mx-auto">
+        <main className="container flex flex-col justify-between content-center mx-auto my-8">
           <Introduction />
           <Attempts />
           <InputProvider>

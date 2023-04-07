@@ -14,12 +14,14 @@ export default function Keyboard() {
     return (
       <div
         key={`row${i}`}
-        className="flex flex-row text-center justify-center space-x-2"
+        className="flex flex-row shrink text-center justify-center space-x-2"
       >
         {keyRow}
       </div>
     );
   });
 
-  return <div className="flex flex-col text-center space-y-2">{keyboard}</div>;
+  return (
+    <div className="flex flex-col text-center space-y-2 w-full">{keyboard}</div>
+  );
 }

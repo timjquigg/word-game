@@ -88,7 +88,6 @@ export default function InputProvider(props: Props) {
   };
 
   const updateInput = (letter: Letter) => {
-    console.log(input);
     const id = focus;
     setInput((prev) => {
       const newinput = [...prev];
