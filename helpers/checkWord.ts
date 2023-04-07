@@ -1,61 +1,76 @@
-interface Occurences {
-  [letter: string]: number;
-}
-
 export default function checkWord(
-  guess: string[],
+  guess: Letter[],
   target: string
 ): LetterCheck[] {
   const targetArr = target.split("");
-  const response: LetterCheck[] = [];
+  const responseObj: ResponseObject = {};
   const guessOccurences: Occurences = {};
   const targetOccurences: Occurences = {};
 
-  guess.forEach((letter, index) => {
-    guessOccurences[letter] = (guessOccurences[letter] ?? 0) + 1;
-    targetOccurences[letter] = targetArr.filter((el) => el === letter).length;
+  // checkObj will contain keys for each letter that exists in the target word. The values will be indices of the target that those letters exist and the indices of the guess where that letter exists.
+  const checkObj: Check = {};
 
-    // If letter is in the right place
-    if (targetArr[index] === letter) {
-      const result: LetterCheck = {};
-      result[letter] = "correct";
-      response[index] = result;
-      return;
+  // Loop to populate the checkObj keys & target values
+  for (let i = 0; i < target.length; i++) {
+    if (Object.hasOwn(checkObj, target[i])) {
+      checkObj[target[i] as Letter].target.push(i);
+    } else {
+      checkObj[target[i] as Letter] = { target: [i], guess: [] };
     }
-  });
+  }
 
-  // If letter is not in word
-  guess.forEach((letter, index) => {
-    if (targetArr.indexOf(letter) < 0) {
-      const result: LetterCheck = {};
-      result[letter] = "absent";
-      response[index] = result;
-      return;
+  // Loop to populate the checkObj guess values
+  for (let i = 0; i < guess.length; i++) {
+    if (Object.hasOwn(checkObj, guess[i])) {
+      checkObj[guess[i]].guess.push(i);
     }
-  });
+  }
 
-  // Letter in the word, but in wrong place
-  guess.forEach((letter, index) => {
-    // If this letter has already been found to be correct skip it
-    if (response[index]) {
-      return;
-    }
-
-    // If this occurence of the letter in the guess is less than the total times it appears in the target
-    if (targetArr.indexOf(letter) !== index) {
-      if (guessOccurences[letter] <= targetOccurences[letter]) {
-        const result: LetterCheck = {};
-        result[letter] = "present";
-        response[index] = result;
-        return;
+  // Loop through each letter in the checkObj and compare target values & guess values
+  for (const letter of Object.keys(checkObj)) {
+    // Index for guess array
+    let i = 0;
+    for (const index of checkObj[letter].target) {
+      // If the guess includes this letter at the same index
+      if (checkObj[letter].guess.includes(index)) {
+        responseObj[String(index)] = {};
+        responseObj[String(index)][letter] = "correct";
+        continue;
       }
-
-      // If this occurence of the letter in the guess is greater than the total times it appears in the target
-      const result: LetterCheck = {};
-      result[letter] = "absent";
-      response[index] = result;
-      return;
+      // If the guess includes this letter but at a different index
+      if (checkObj[letter].guess.length > 0) {
+        responseObj[String(checkObj[letter].guess[i])] = {};
+        responseObj[String(checkObj[letter].guess[i])][letter] = "present";
+        i++;
+        continue;
+      }
     }
-  });
+  }
+
+  const response = Object.values(responseObj);
+
+  // If response is empty, then all guess letters are absent from target
+  if (response.length === 0) {
+    for (const letter of guess) {
+      const addition: LetterCheck = {};
+      addition[letter] = "absent";
+      response.push(addition);
+    }
+  }
+
+  // Loop through guess letters and see if at each index it matches the letter in the response array
+  for (const index in guess) {
+    if (typeof response[index] !== "undefined") {
+      if (guess[index] !== Object.keys(response[index])[0]) {
+        const addition: LetterCheck = {};
+        addition[guess[index]] = "absent";
+        response.splice(Number(index), 0, addition);
+      }
+    } else {
+      const addition: LetterCheck = {};
+      addition[guess[index]] = "absent";
+      response.splice(Number(index), 0, addition);
+    }
+  }
   return response;
 }

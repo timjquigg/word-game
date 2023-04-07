@@ -3,7 +3,7 @@ import { inputContext } from "@/providers/inputProvider";
 import { useContext } from "react";
 
 type Props = {
-  children: string;
+  children: Letter;
 };
 export default function Key(props: Props) {
   const { updateInput, updateFocus, keys } = useContext(inputContext);
