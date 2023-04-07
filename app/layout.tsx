@@ -13,11 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-neutral-200">
-      <body className="h-screen">
-        {/* <div id="banner" className="container mx-auto"> */}
+    <html lang="en" className=" bg-neutral-200">
+      <body className=" overflow-hidden h-screen px-6">
         <Banner />
-        {/* </div> */}
         <div>{children}</div>
       </body>
     </html>

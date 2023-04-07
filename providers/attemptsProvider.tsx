@@ -9,22 +9,22 @@ type Props = {
 interface AttemptsContext {
   attempts: LetterCheck[][];
   updateAttempts: (guess: Letter[], target: string) => LetterCheck[];
-  solved: boolean;
-  updateSolved: () => void;
+  solved: Solved;
+  updateSolved: (value: Solved) => void;
   resetAttempts: () => void;
 }
 
 export const attemptsContext = createContext<AttemptsContext>({
   attempts: [],
   updateAttempts: () => [{}],
-  solved: false,
-  updateSolved: () => {},
+  solved: "incomplete",
+  updateSolved: (value: Solved) => {},
   resetAttempts: () => {},
 });
 
 export default function AttemptsProvider(props: Props) {
   const [attempts, setAttempts] = useState<LetterCheck[][]>([]);
-  const [solved, setSolved] = useState(false);
+  const [solved, setSolved] = useState<Solved>("incomplete");
 
   const updateAttempts = (guess: Letter[], target: string): LetterCheck[] => {
     const attempt = checkWord(guess, target);
@@ -40,8 +40,8 @@ export default function AttemptsProvider(props: Props) {
     setAttempts([]);
   };
 
-  const updateSolved = () => {
-    setSolved((prev) => !prev);
+  const updateSolved = (value: Solved) => {
+    setSolved(value);
   };
 
   const providerData = {

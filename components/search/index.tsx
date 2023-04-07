@@ -39,7 +39,7 @@ export default function Search() {
 
   return (
     <>
-      {!solved && answer && (
+      {solved === "incomplete" && answer && (
         <div className="flex flex-col justify-center content-center text-center space-y-3">
           <div className="flex justify-center space-x-3 my-3 ">
             {searchSquares}

@@ -1,3 +1,5 @@
+type Solved = "yes" | "no" | "incomplete";
+
 type LetterState = "correct" | "absent" | "present" | null;
 
 interface LetterCheck extends Record<string, LetterState> {
