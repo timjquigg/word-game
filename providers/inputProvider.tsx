@@ -76,7 +76,7 @@ export default function InputProvider(props: Props) {
 
       if (newFocus === answer.length) {
         document.getElementById("submit")?.focus();
-        // return prev;
+        return prev;
       }
 
       return newFocus;
@@ -88,6 +88,7 @@ export default function InputProvider(props: Props) {
   };
 
   const updateInput = (letter: Letter) => {
+    console.log(input);
     const id = focus;
     setInput((prev) => {
       const newinput = [...prev];
