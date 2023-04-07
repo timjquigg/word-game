@@ -8,7 +8,7 @@ type Props = {
 
 interface AttemptsContext {
   attempts: LetterCheck[][];
-  updateAttempts: (guess: string[], target: string) => LetterCheck[];
+  updateAttempts: (guess: Letter[], target: string) => LetterCheck[];
   solved: boolean;
   updateSolved: () => void;
   resetAttempts: () => void;
@@ -26,7 +26,7 @@ export default function AttemptsProvider(props: Props) {
   const [attempts, setAttempts] = useState<LetterCheck[][]>([]);
   const [solved, setSolved] = useState(false);
 
-  const updateAttempts = (guess: string[], target: string): LetterCheck[] => {
+  const updateAttempts = (guess: Letter[], target: string): LetterCheck[] => {
     const attempt = checkWord(guess, target);
     setAttempts((prev) => {
       const newAttempts = [...prev];
