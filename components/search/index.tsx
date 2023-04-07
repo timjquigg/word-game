@@ -45,14 +45,16 @@ export default function Search() {
             {searchSquares}
           </div>
           {error && <p>No cheating! Please enter a real word</p>}
-          <Keyboard />
-          <div className="flex flex-row justify-center space-x-3 my-3">
-            <StyledButton id="backspace" callback={backSpace}>
-              Backspace
-            </StyledButton>
-            <StyledButton id="submit" callback={submit}>
-              Submit
-            </StyledButton>
+          <div className="absolute inset-x-0 bottom-20">
+            <Keyboard />
+            <div className="flex flex-row justify-center space-x-3 my-3">
+              <StyledButton id="backspace" callback={backSpace}>
+                Backspace
+              </StyledButton>
+              <StyledButton id="submit" callback={submit}>
+                Submit
+              </StyledButton>
+            </div>
           </div>
         </div>
       )}
