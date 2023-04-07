@@ -10,13 +10,13 @@ type Props = {
 
 interface InputContext {
   focus: number;
-  input: string[];
+  input: Letter[];
   keys: LetterCheck;
   // word: boolean;
   updateFocus: (increment: number) => void;
   resetFocus: () => void;
-  updateInput: (letter: string) => void;
-  submitInput: (guess?: string[], target?: string) => Promise<void>;
+  updateInput: (letter: Letter) => void;
+  submitInput: (guess?: Letter[], target?: string) => Promise<void>;
   resetKeys: () => void;
 }
 
@@ -34,7 +34,7 @@ export const inputContext = createContext<InputContext>({
 
 export default function InputProvider(props: Props) {
   const [focus, setFocus] = useState(0);
-  const [input, setInput] = useState<string[]>(Array(5).fill(""));
+  const [input, setInput] = useState<Letter[]>(Array(5).fill(""));
   const [keys, setKeys] = useState<LetterCheck>({
     A: null,
     B: null,
@@ -87,7 +87,7 @@ export default function InputProvider(props: Props) {
     setFocus(0);
   };
 
-  const updateInput = (letter: string) => {
+  const updateInput = (letter: Letter) => {
     const id = focus;
     setInput((prev) => {
       const newinput = [...prev];
@@ -104,7 +104,7 @@ export default function InputProvider(props: Props) {
   };
 
   const submitInput = async (
-    guess?: string[],
+    guess?: Letter[],
     target?: string
   ): Promise<void> => {
     if (guess === undefined) {

@@ -17,7 +17,7 @@ export default function checkLetters(
       }
     }
 
-    if (keys[Object.keys(letter)[0]] === null) {
+    if (updatedKeys[Object.keys(letter)[0]] === null) {
       updatedKeys[Object.keys(letter)[0]] = "absent";
     }
   });
