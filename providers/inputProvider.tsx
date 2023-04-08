@@ -76,7 +76,7 @@ export default function InputProvider(props: Props) {
 
       if (newFocus === answer.length) {
         document.getElementById("submit")?.focus();
-        return prev;
+        return newFocus;
       }
 
       return newFocus;

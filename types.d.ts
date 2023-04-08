@@ -1,4 +1,4 @@
-type Solved = "yes" | "no" | "incomplete";
+type Solved = "yes" | "no" | "incomplete" | null;
 
 type LetterState = "correct" | "absent" | "present" | null;
 
