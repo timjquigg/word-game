@@ -33,7 +33,9 @@ export default function Complete() {
           <p>🥲🥲🥲🥲🥲🥲🥲🥲🥲</p>
           <p>{`The word was ${answer}.`}</p>
           <div className="mx-auto my-8">
-            <StyledButton callback={playAgain}>Play again</StyledButton>
+            <StyledButton id="playAgain" callback={playAgain}>
+              Play again
+            </StyledButton>
           </div>
         </div>
       )}
