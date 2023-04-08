@@ -47,30 +47,16 @@ export default function checkWord(
     }
   }
 
+  // Loop through the guess letters and if any are missing in the response object, add them as 'absent'
+  const responseKeys = Object.keys(responseObj);
+  for (const index in guess) {
+    if (responseKeys.indexOf(index) < 0) {
+      responseObj[index] = {};
+      responseObj[index][guess[index]] = "absent";
+    }
+  }
+
   const response = Object.values(responseObj);
 
-  // If response is empty, then all guess letters are absent from target
-  if (response.length === 0) {
-    for (const letter of guess) {
-      const addition: LetterCheck = {};
-      addition[letter] = "absent";
-      response.push(addition);
-    }
-  }
-
-  // Loop through guess letters and see if at each index it matches the letter in the response array
-  for (const index in guess) {
-    if (typeof response[index] !== "undefined") {
-      if (guess[index] !== Object.keys(response[index])[0]) {
-        const addition: LetterCheck = {};
-        addition[guess[index]] = "absent";
-        response.splice(Number(index), 0, addition);
-      }
-    } else {
-      const addition: LetterCheck = {};
-      addition[guess[index]] = "absent";
-      response.splice(Number(index), 0, addition);
-    }
-  }
   return response;
 }
