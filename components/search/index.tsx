@@ -50,10 +50,18 @@ export default function Search() {
           <div className="absolute inset-x-0 bottom-20">
             <Keyboard />
             <div className="flex flex-row justify-center space-x-3 my-3">
-              <StyledButton id="backspace" callback={backSpace}>
+              <StyledButton
+                id="backspace"
+                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                callback={backSpace}
+              >
                 Backspace
               </StyledButton>
-              <StyledButton id="submit" callback={submit}>
+              <StyledButton
+                id="submit"
+                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                callback={submit}
+              >
                 Submit
               </StyledButton>
             </div>

@@ -7,9 +7,10 @@ import { answerContext } from "@/providers/answerProvider";
 export default function Complete() {
   const { solved, attempts, resetAttempts, updateSolved } =
     useContext(attemptsContext);
-  const { answer, getNewAnswer } = useContext(answerContext);
+  const { answer, resetAnswer, getNewAnswer } = useContext(answerContext);
 
   const playAgain = () => {
+    resetAnswer();
     resetAttempts();
     updateSolved("incomplete");
     getNewAnswer();
@@ -21,7 +22,11 @@ export default function Complete() {
         <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
           <p>{`Congratulations! It took you ${attempts.length} attempts to get the word ${answer}.`}</p>
           <div className="mx-auto my-8">
-            <StyledButton id="playAgain" callback={playAgain}>
+            <StyledButton
+              id="playAgain"
+              classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+              callback={playAgain}
+            >
               Play again
             </StyledButton>
           </div>
@@ -33,7 +38,11 @@ export default function Complete() {
           <p>🥲🥲🥲🥲🥲🥲🥲🥲🥲</p>
           <p>{`The word was ${answer}.`}</p>
           <div className="mx-auto my-8">
-            <StyledButton id="playAgain" callback={playAgain}>
+            <StyledButton
+              id="playAgain"
+              classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+              callback={playAgain}
+            >
               Play again
             </StyledButton>
           </div>

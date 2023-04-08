@@ -7,11 +7,13 @@ type Props = {
 
 interface AnswerContext {
   answer: string;
+  resetAnswer: () => void;
   getNewAnswer: () => void;
 }
 
 export const answerContext = createContext<AnswerContext>({
   answer: "",
+  resetAnswer: () => {},
   getNewAnswer: () => {},
 });
 
@@ -28,7 +30,11 @@ export default function AnswerProvider(props: Props) {
     setAnswer(word.word[0].toUpperCase());
   };
 
-  const providerData = { answer, getNewAnswer };
+  const resetAnswer = () => {
+    setAnswer("");
+  };
+
+  const providerData = { answer, getNewAnswer, resetAnswer };
 
   return (
     <answerContext.Provider value={providerData}>
