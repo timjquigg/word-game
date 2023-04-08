@@ -19,7 +19,7 @@ interface Style {
 }
 
 export default function StyledButton(props: Props) {
-  const [coordinates, setCoordinates] = useState<Coordinates>({});
+  const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const [clicked, setClicked] = useState(false);
   const [className, setClassName] = useState("hidden");
   const [style, setStyle] = useState<Style>({ top: "", left: "" });
