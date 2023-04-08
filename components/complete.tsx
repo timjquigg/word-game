@@ -21,7 +21,9 @@ export default function Complete() {
         <div className="flex flex-col justify-center max-w-lg mx-auto text-center">
           <p>{`Congratulations! It took you ${attempts.length} attempts to get the word ${answer}.`}</p>
           <div className="mx-auto my-8">
-            <StyledButton callback={playAgain}>Play again</StyledButton>
+            <StyledButton id="playAgain" callback={playAgain}>
+              Play again
+            </StyledButton>
           </div>
         </div>
       )}
