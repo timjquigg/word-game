@@ -4,14 +4,17 @@ import { useContext, useState } from "react";
 
 import StyledButton from "../styledButton";
 import Letter from "../attempts/letter";
+import { attemptsContext } from "@/providers/attemptsProvider";
 
 export default function Introduction() {
   const [display, setDisplay] = useState(true);
 
   const { getNewAnswer } = useContext(answerContext);
+  const { updateSolved } = useContext(attemptsContext);
 
   const playGame = () => {
     setDisplay(false);
+    updateSolved("incomplete");
     getNewAnswer();
   };
 
@@ -68,7 +71,9 @@ export default function Introduction() {
           </ol>
 
           <div className="mx-auto mt-8">
-            <StyledButton callback={playGame}>Play</StyledButton>
+            <StyledButton id="playGame" callback={playGame}>
+              Play
+            </StyledButton>
           </div>
         </div>
       )}

@@ -6,6 +6,7 @@ import { inputContext } from "@/providers/inputProvider";
 import { answerContext } from "@/providers/answerProvider";
 import { attemptsContext } from "@/providers/attemptsProvider";
 import Keyboard from "./keyboard";
+import Loading from "@/components/search/loading";
 
 export default function Search() {
   const [error, setError] = useState(false);
@@ -39,6 +40,7 @@ export default function Search() {
 
   return (
     <>
+      {solved === "incomplete" && !answer && <Loading />}
       {solved === "incomplete" && answer && (
         <div className="flex flex-col justify-center content-center text-center space-y-3">
           <div className="flex justify-center space-x-3 my-3 ">

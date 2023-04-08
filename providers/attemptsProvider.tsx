@@ -24,7 +24,7 @@ export const attemptsContext = createContext<AttemptsContext>({
 
 export default function AttemptsProvider(props: Props) {
   const [attempts, setAttempts] = useState<LetterCheck[][]>([]);
-  const [solved, setSolved] = useState<Solved>("incomplete");
+  const [solved, setSolved] = useState<Solved>(null);
 
   const updateAttempts = (guess: Letter[], target: string): LetterCheck[] => {
     const attempt = checkWord(guess, target);
