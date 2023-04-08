@@ -11,8 +11,9 @@ import Loading from "@/components/search/loading";
 export default function Search() {
   const [error, setError] = useState(false);
   const { answer } = useContext(answerContext);
-  const { submitInput, updateFocus, resetFocus } = useContext(inputContext);
-  const { solved } = useContext(attemptsContext);
+  const { submitInput, updateFocus, resetFocus, fullReset } =
+    useContext(inputContext);
+  const { solved, updateSolved } = useContext(attemptsContext);
   const searchSquares = Array(5)
     .fill("")
     .map((el, index) => {
@@ -38,12 +39,17 @@ export default function Search() {
     updateFocus(-1);
   };
 
+  const giveUp = () => {
+    updateSolved("no");
+    fullReset();
+  };
+
   return (
     <>
       {solved === "incomplete" && !answer && <Loading />}
       {solved === "incomplete" && answer && (
         <div className="flex flex-col justify-center content-center text-center space-y-3">
-          <div className="flex justify-center space-x-3 my-3 ">
+          <div className="flex flex-row justify-center items-center space-x-3 my-3 ">
             {searchSquares}
           </div>
           {error && <p>No cheating! Please enter a real word</p>}
@@ -63,6 +69,15 @@ export default function Search() {
                 callback={submit}
               >
                 Submit
+              </StyledButton>
+            </div>
+            <div>
+              <StyledButton
+                id="quit"
+                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                callback={giveUp}
+              >
+                Give Up
               </StyledButton>
             </div>
           </div>

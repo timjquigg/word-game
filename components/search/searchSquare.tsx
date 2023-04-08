@@ -24,10 +24,10 @@ export default function SearchSquare(props: Props) {
   };
 
   let style =
-    "w-7 h-7 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2  ";
+    "w-7 h-7 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2 ";
 
   if (focus === props.id) {
-    style += "outline-none drop-shadow-xl border-slate-50";
+    style += "drop-shadow-xl border-slate-50";
   }
 
   return (
