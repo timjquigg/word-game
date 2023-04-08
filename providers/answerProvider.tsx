@@ -7,34 +7,41 @@ type Props = {
 
 interface AnswerContext {
   answer: string;
+  definition: string[];
   resetAnswer: () => void;
   getNewAnswer: () => void;
 }
 
 export const answerContext = createContext<AnswerContext>({
   answer: "",
+  definition: [""],
   resetAnswer: () => {},
   getNewAnswer: () => {},
 });
 
 export default function AnswerProvider(props: Props) {
   const [answer, setAnswer] = useState("");
+  const [definition, setDefinition] = useState([""]);
 
   const getNewAnswer = async () => {
     const res = await fetch("/api/answer");
-    const word = await res.json();
+    const json = await res.json();
+    const word = json.word[0];
+    const definition = json.definition;
     // const word = { word: ["tasse"] };
     if (process.env.NODE_ENV === "development") {
-      console.log(word.word[0]);
+      console.log(word);
+      console.log(definition);
     }
-    setAnswer(word.word[0].toUpperCase());
+    setAnswer(word.toUpperCase());
+    setDefinition(definition);
   };
 
   const resetAnswer = () => {
     setAnswer("");
   };
 
-  const providerData = { answer, getNewAnswer, resetAnswer };
+  const providerData = { answer, definition, getNewAnswer, resetAnswer };
 
   return (
     <answerContext.Provider value={providerData}>
