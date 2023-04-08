@@ -9,7 +9,7 @@ export default function Attempts() {
   const { answer } = useContext(answerContext);
 
   let check = false;
-  const attemptList = attempts.map((attempt, i) => {
+  const attemptList = attempts.slice(0, 5).map((attempt, i) => {
     check = true;
     const row = attempt.map((letter, j) => {
       if (Object.values(letter)[0] !== "correct") {

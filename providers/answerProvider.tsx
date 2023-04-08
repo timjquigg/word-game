@@ -31,7 +31,6 @@ export default function AnswerProvider(props: Props) {
     // const word = { word: ["tasse"] };
     if (process.env.NODE_ENV === "development") {
       console.log(word);
-      console.log(definition);
     }
     setAnswer(word.toUpperCase());
     setDefinition(definition);

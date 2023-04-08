@@ -18,6 +18,7 @@ interface InputContext {
   updateInput: (letter: Letter) => void;
   submitInput: (guess?: Letter[], target?: string) => Promise<void>;
   resetKeys: () => void;
+  fullReset: () => void;
 }
 
 export const inputContext = createContext<InputContext>({
@@ -30,6 +31,7 @@ export const inputContext = createContext<InputContext>({
   updateInput: () => {},
   submitInput: () => Promise.resolve(),
   resetKeys: () => {},
+  fullReset: () => {},
 });
 
 export default function InputProvider(props: Props) {
@@ -66,6 +68,12 @@ export default function InputProvider(props: Props) {
   const { updateAttempts, solved } = useContext(attemptsContext);
 
   const { answer } = useContext(answerContext);
+
+  const fullReset = () => {
+    resetFocus();
+    resetInput();
+    resetKeys();
+  };
 
   const updateFocus = (increment: number) => {
     setFocus((prev) => {
@@ -164,15 +172,6 @@ export default function InputProvider(props: Props) {
     });
   };
 
-  // useEffect(() => {
-  //   const nextBox = document.getElementById(`search${focus}`);
-  //   if (nextBox) {
-  //     nextBox.focus();
-  //     return;
-  //   }
-  //   document.getElementById("submit")?.focus();
-  // }, [focus]);
-
   useEffect(() => {
     resetKeys();
   }, [solved]);
@@ -187,6 +186,7 @@ export default function InputProvider(props: Props) {
     updateInput,
     submitInput,
     resetKeys,
+    fullReset,
   };
 
   return (
