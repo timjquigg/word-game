@@ -5,6 +5,8 @@ import { useEffect, useState, MouseEvent } from "react";
 type Props = {
   children?: string;
   id: string;
+  classes?: string;
+  disabled?: boolean;
   callback: () => void;
 };
 
@@ -19,7 +21,6 @@ interface Style {
 }
 
 export default function StyledButton(props: Props) {
-  const [coordinates, setCoordinates] = useState<Coordinates>({ x: 0, y: 0 });
   const [clicked, setClicked] = useState(false);
   const [className, setClassName] = useState("hidden");
   const [style, setStyle] = useState<Style>({ top: "", left: "" });
@@ -46,6 +47,7 @@ export default function StyledButton(props: Props) {
   };
 
   const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    navigator.vibrate(50);
     const buttonCoordinates = getOffset(e.currentTarget);
     const x = e.clientX - buttonCoordinates.left;
     const y = e.clientY - buttonCoordinates.top;
@@ -54,7 +56,6 @@ export default function StyledButton(props: Props) {
     );
     setStyle({ left: `${x}px`, top: `${y}px` });
     setClicked(true);
-    setCoordinates({ x, y });
     props.callback();
   };
 
@@ -63,10 +64,13 @@ export default function StyledButton(props: Props) {
       id={props.id}
       onClick={(event) => clickHandler(event)}
       autoFocus={false}
-      className="relative overflow-hidden uppercase tracking-wider bg-blue-500 rounded-lg min-w-[10rem] p-2 drop-shadow-md opacity-90 hover:opacity-100 hover:drop-shadow-xl"
+      disabled={props.disabled}
+      className={`relative overflow-hidden uppercase tracking-wider drop-shadow-md opacity-90 hover:opacity-100 hover:drop-shadow-xl ${props.classes}`}
     >
       {props.children}
       <span className={className} style={style}></span>
     </button>
   );
 }
+
+// 'bg-blue-500 rounded-lg min-w-[10rem] p-2'

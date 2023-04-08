@@ -20,7 +20,7 @@ export default function Loading() {
           fill="currentFill"
         />
       </svg>
-      <p>Retreiving a new word for your enjoyment!</p>
+      <p>Retrieving a new word for your enjoyment!</p>
       <span className="sr-only">Loading...</span>
     </div>
   );

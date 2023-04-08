@@ -71,7 +71,11 @@ export default function Introduction() {
           </ol>
 
           <div className="mx-auto mt-8">
-            <StyledButton id="playGame" callback={playGame}>
+            <StyledButton
+              id="playGame"
+              classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+              callback={playGame}
+            >
               Play
             </StyledButton>
           </div>
