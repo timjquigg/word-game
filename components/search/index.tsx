@@ -10,6 +10,7 @@ import Loading from "@/components/search/loading";
 
 export default function Search() {
   const [error, setError] = useState(false);
+  // const [submitted, setSutmitted] = useState(false);
   const { answer } = useContext(answerContext);
   const { submitInput, updateFocus, resetFocus, fullReset } =
     useContext(inputContext);
@@ -21,14 +22,17 @@ export default function Search() {
     });
 
   const submit = () => {
+    // setSutmitted(true);
     submitInput()
       .then(() => {
         // console.log("resolve:");
+        // setSutmitted(false);
         resetFocus();
         setError(false);
       })
       .catch((err) => {
         // console.log("reject:");
+        // setSutmitted(false);
         setError(true);
         resetFocus();
         console.log(err);

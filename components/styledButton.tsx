@@ -23,7 +23,7 @@ interface Style {
 export default function StyledButton(props: Props) {
   const [clicked, setClicked] = useState(false);
   const [className, setClassName] = useState("hidden");
-  const [style, setStyle] = useState<Style>({ top: "", left: "" });
+  const [style, setStyle] = useState<Style>({ top: "0px", left: "0px" });
 
   useEffect(() => {
     if (clicked) {
