@@ -17,6 +17,23 @@ test("Returns expected value based on input when guess is correct", () => {
   expect(result).toEqual(expectedOutput);
 });
 
+test("Returns expected value based on input when guess has some correct, some present and some absent", () => {
+  const guess: Letter[] = ["A", "F", "T", "E", "R"];
+  const target = "ANEAR";
+
+  const expectedOutput = [
+    { A: "correct" },
+    { F: "absent" },
+    { T: "absent" },
+    { E: "present" },
+    { R: "correct" },
+  ];
+
+  const result = checkWord(guess, target);
+
+  expect(result).toEqual(expectedOutput);
+});
+
 test("Returns expected value based on input when guess is all incorrect", () => {
   const guess: Letter[] = ["D", "O", "U", "M", "S"];
   const target = "PARTY";
