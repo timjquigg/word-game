@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 type Props = {
   id: number;
+  // submitted: boolean;
 };
 
 export default function SearchSquare(props: Props) {
@@ -27,12 +28,16 @@ export default function SearchSquare(props: Props) {
     "w-7 h-7 bg-transparent text-center align-middle rounded-lg border-black border-solid border-2 ";
 
   if (focus === props.id) {
-    style += "drop-shadow-xl border-slate-50";
+    style += "drop-shadow-xl border-slate-50 animate-beat ";
   }
 
+  // if (props.submitted) {
+  //   style += "animate-submit";
+  // }
+
   return (
-    <p id={`search${props.id}`} className={style}>
-      {value}
-    </p>
+    <div className={style}>
+      <p id={`search${props.id}`}>{value}</p>
+    </div>
   );
 }

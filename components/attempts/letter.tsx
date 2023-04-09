@@ -9,52 +9,39 @@ type Props = {
 
 export default function Letter(props: Props) {
   const delay = 100;
-  let initialStyle =
+  let style =
     "w-7 h-7 rounded-lg flex justify-center items-center ease-in-out ";
   switch (Object.values(props.letter)[0]) {
     case "correct":
-      initialStyle += "bg-green-500";
+      style += "bg-green-500 ";
       break;
     case "absent":
-      initialStyle += "bg-red-500";
+      style += "bg-red-500 ";
       break;
     case "present":
-      initialStyle += "bg-yellow-500";
+      style += "bg-yellow-500 ";
       break;
     default:
-      initialStyle += "";
+      style += "";
   }
 
-  const [style, setStyle] = useState(initialStyle);
-
-  useEffect(() => {
-    switch (props.delay) {
-      case 0:
-        setStyle((prev) => prev + ` animate-bounce animation-delay-[0ms] `);
-        break;
-      case 1:
-        setStyle((prev) => prev + ` animate-bounce animation-delay-[100ms] `);
-        break;
-      case 2:
-        setStyle((prev) => prev + ` animate-bounce animation-delay-[200ms] `);
-        break;
-      case 3:
-        setStyle((prev) => prev + ` animate-bounce animation-delay-[300ms] `);
-        break;
-      case 4:
-        setStyle((prev) => prev + ` animate-bounce animation-delay-[400ms] `);
-        break;
-    }
-  }, [props]);
-
-  useEffect(() => {
-    const removeBounce = () => {
-      setTimeout(() => {
-        setStyle((prev) => prev.replace("animate-bounce", ""));
-      }, 500 + delay * props.delay);
-    };
-    removeBounce();
-  }, [props, style]);
+  switch (props.delay) {
+    case 0:
+      style += `animate-[letter_1000ms_ease-in-out_0s_1] `;
+      break;
+    case 1:
+      style += `animate-[letter_1200ms_ease-in-out_0s_1] `;
+      break;
+    case 2:
+      style += `animate-[letter_1400ms_ease-in-out_0s_1]  `;
+      break;
+    case 3:
+      style += `animate-[letter_1600ms_ease-in-out_0s_1]  `;
+      break;
+    case 4:
+      style += `animate-[letter_1800ms_ease-in-out_0s_1] `;
+      break;
+  }
 
   return (
     <>
