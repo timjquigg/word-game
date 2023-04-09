@@ -46,7 +46,7 @@ export default function StyledButton(props: Props) {
     };
   };
 
-  const canVibrate = "vibrate" in navigator;
+  const canVibrate = "vibrate" in window.navigator;
 
   const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
     if (canVibrate) {
