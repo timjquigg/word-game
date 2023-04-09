@@ -9,13 +9,19 @@ export default function Attempts() {
   const { answer } = useContext(answerContext);
 
   let check = false;
-  const attemptList = attempts.slice(0, 5).map((attempt, i) => {
+  const attemptList = attempts.map((attempt, i) => {
     check = true;
-    const row = attempt.map((letter, j) => {
+    const row = attempt.slice(0, answer.length).map((letter, j) => {
       if (Object.values(letter)[0] !== "correct") {
         check = false;
       }
-      return <Letter key={`${i}${j}`} letter={letter} />;
+      return (
+        <Letter
+          key={`${i}${j}`}
+          delay={i === attempts.length - 1 ? j : -1}
+          letter={letter}
+        />
+      );
     });
     return (
       <div key={i} className="flex space-x-3 my-3 justify-center">

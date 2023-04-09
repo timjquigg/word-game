@@ -40,7 +40,7 @@ export default function Introduction() {
               <ol className="list-none space-y-3 mt-3 ">
                 <li className="flex flex-row space-x-3 content-center">
                   <div className="my-auto">
-                    <Letter letter={{ A: "absent" }} />
+                    <Letter delay={-1} letter={{ A: "absent" }} />
                   </div>
                   <p className="wrap">
                     If a letter in your guess is not in the word, it will be in
@@ -49,7 +49,7 @@ export default function Introduction() {
                 </li>
                 <li className="flex flex-row space-x-3 content-center">
                   <div className="my-auto">
-                    <Letter letter={{ A: "present" }} />
+                    <Letter delay={-1} letter={{ A: "present" }} />
                   </div>
                   <p>
                     If a letter is in the solution, but in the wrong place it
@@ -58,7 +58,7 @@ export default function Introduction() {
                 </li>
                 <li className="flex flex-row space-x-3 content-center">
                   <div className="my-auto">
-                    <Letter letter={{ A: "correct" }} />
+                    <Letter delay={-1} letter={{ A: "correct" }} />
                   </div>
                   <p>
                     If a letter is in the solution and in the right place it
