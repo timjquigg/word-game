@@ -46,12 +46,12 @@ export default function StyledButton(props: Props) {
     };
   };
 
-  const canVibrate = "vibrate" in window.navigator;
+  // const canVibrate = "vibrate" in window.navigator;
 
   const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    if (canVibrate) {
-      navigator.vibrate(50);
-    }
+    // if (canVibrate) {
+    window?.navigator?.vibrate?.(50);
+    // }
 
     const buttonCoordinates = getOffset(e.currentTarget);
     const x = e.clientX - buttonCoordinates.left;
