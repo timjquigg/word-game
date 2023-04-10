@@ -12,7 +12,6 @@ interface InputContext {
   focus: number;
   input: Letter[];
   keys: LetterCheck;
-  // word: boolean;
   updateFocus: (increment: number) => void;
   resetFocus: () => void;
   updateInput: (letter: Letter) => void;
@@ -25,7 +24,6 @@ export const inputContext = createContext<InputContext>({
   focus: 0,
   input: [],
   keys: {},
-  // word: false,
   updateFocus: () => {},
   resetFocus: () => {},
   updateInput: () => {},
@@ -128,7 +126,6 @@ export default function InputProvider(props: Props) {
     });
 
     const { valid } = await res.json();
-    // setWord(valid);
 
     if (valid) {
       const attempt = updateAttempts(guess, target);
