@@ -22,9 +22,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Technologies used
 
-Next.js was used as the backbone for this project. I used Nextjs 13.2 with the new app directory setup.
+Next.js 13 with the new app directory was used as the backbone for this project.
 
 Tailwind CSS was used for styling of this project.
+
+Testing of game logic code was done with Jest.
 
 This project was coded using TypeScript.
 
