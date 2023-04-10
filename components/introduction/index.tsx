@@ -30,7 +30,10 @@ export default function Introduction() {
           <h2 className="mt-8 mb-4 text-lg font-bold">Rules:</h2>
           <ol className="list-none space-y-3">
             <li>
-              <p>You have 6 attempts to guess the word</p>
+              <p>You have 6 attempts to guess the word.</p>
+            </li>
+            <li>
+              <p>Each guess must be of a valid word.</p>
             </li>
             <li>
               <p>

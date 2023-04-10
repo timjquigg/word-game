@@ -10,11 +10,6 @@ type Props = {
   callback: () => void;
 };
 
-interface Coordinates {
-  x: number;
-  y: number;
-}
-
 interface Style {
   top: string;
   left: string;
@@ -46,12 +41,9 @@ export default function StyledButton(props: Props) {
     };
   };
 
-  // const canVibrate = "vibrate" in window.navigator;
-
   const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
-    // if (canVibrate) {
+    // Safari on iOs does not support vibrate :(
     window?.navigator?.vibrate?.(50);
-    // }
 
     const buttonCoordinates = getOffset(e.currentTarget);
     const x = e.clientX - buttonCoordinates.left;
@@ -77,5 +69,3 @@ export default function StyledButton(props: Props) {
     </button>
   );
 }
-
-// 'bg-blue-500 rounded-lg min-w-[10rem] p-2'

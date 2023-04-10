@@ -7,6 +7,7 @@ export default async function getAnswer(): Promise<string> {
 }
 
 export const fetchAnswer = async (): Promise<string> => {
+  // The random word api includes some words that are not in the dictionary. So random words must be validated against the dictionary being used for guesses
   let valid = false;
 
   while (!valid) {

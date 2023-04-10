@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 type Props = {
   children?: React.ReactNode;
@@ -28,7 +28,6 @@ export default function AnswerProvider(props: Props) {
     const json = await res.json();
     const word = json.word[0];
     const definition = json.definition;
-    // const word = { word: ["tasse"] };
     if (process.env.NODE_ENV === "development") {
       console.log(word);
     }
