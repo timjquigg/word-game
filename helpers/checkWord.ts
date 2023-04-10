@@ -26,7 +26,6 @@ export default function checkWord(
     }
   }
 
-  console.log(checkObj);
   // Loop through each letter in the checkObj and compare target values & guess values
   for (const letter of Object.keys(checkObj)) {
     // Index for guess array
@@ -34,8 +33,6 @@ export default function checkWord(
     const used: number[] = [];
     for (const index of checkObj[letter].target) {
       // If the guess includes this letter at the same index
-      // If the guess includes this letter but at a different index
-
       if (checkObj[letter].guess.includes(index)) {
         responseObj[String(index)] = {};
         responseObj[String(index)][letter] = "correct";
@@ -43,11 +40,15 @@ export default function checkWord(
         i++;
         continue;
       }
+    }
 
+    for (const index of checkObj[letter].target) {
+      // If the guess includes this letter but at a different index
       if (used.indexOf(index) < 0) {
         if (i < checkObj[letter].guess.length) {
           responseObj[String(checkObj[letter].guess[i])] = {};
           responseObj[String(checkObj[letter].guess[i])][letter] = "present";
+          used.push(index);
           i++;
           continue;
         }
@@ -55,7 +56,6 @@ export default function checkWord(
     }
   }
 
-  console.log(responseObj);
   // Loop through the guess letters and if any are missing in the response object, add them as 'absent'
   const responseKeys = Object.keys(responseObj);
   for (const index in guess) {
