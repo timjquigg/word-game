@@ -27,19 +27,19 @@ export default function Letter(props: Props) {
 
   switch (props.delay) {
     case 0:
-      style += `animate-[letter_1000ms_ease-in-out_0s_1] `;
+      style += `animate-[bounce_1000ms_ease-in-out_0s_1.5] `;
       break;
     case 1:
-      style += `animate-[letter_1200ms_ease-in-out_0s_1] `;
+      style += `animate-[bounce_1000ms_ease-in-out_200ms_1.5] `;
       break;
     case 2:
-      style += `animate-[letter_1400ms_ease-in-out_0s_1]  `;
+      style += `animate-[bounce_1000ms_ease-in-out_400ms_1.5]  `;
       break;
     case 3:
-      style += `animate-[letter_1600ms_ease-in-out_0s_1]  `;
+      style += `animate-[bounce_1000ms_ease-in-out_600ms_1.5]  `;
       break;
     case 4:
-      style += `animate-[letter_1800ms_ease-in-out_0s_1] `;
+      style += `animate-[bounce_1000ms_ease-in-out_800ms_1.5] `;
       break;
   }
 
