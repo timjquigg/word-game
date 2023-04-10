@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["var(--font-source-serif)"],
+        sans: ["var(--font-source-sans)"],
+      },
       keyframes: {
         ripple: {
           "0%": { width: "0px", height: "0px", opacity: 0.5 },
