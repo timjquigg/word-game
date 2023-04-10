@@ -25,13 +25,11 @@ export default function Search() {
     setSutmitted(true);
     submitInput()
       .then(() => {
-        // console.log("resolve:");
         setSutmitted(false);
         resetFocus();
         setError(false);
       })
       .catch((err) => {
-        // console.log("reject:");
         setSutmitted(false);
         setError(true);
         resetFocus();

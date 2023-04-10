@@ -8,12 +8,7 @@ type Props = {
 };
 
 export default function SearchSquare(props: Props) {
-  const {
-    focus,
-    input,
-    updateFocus,
-    updateInput: updateinput,
-  } = useContext(inputContext);
+  const { focus, input } = useContext(inputContext);
   const [value, setValue] = useState(input[props.id]);
 
   useEffect(() => {
