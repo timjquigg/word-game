@@ -10,11 +10,6 @@ type Props = {
   callback: () => void;
 };
 
-interface Coordinates {
-  x: number;
-  y: number;
-}
-
 interface Style {
   top: string;
   left: string;
