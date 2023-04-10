@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 type Props = {
   id: number;
-  // submitted: boolean;
+  submitted: boolean;
 };
 
 export default function SearchSquare(props: Props) {
@@ -31,9 +31,9 @@ export default function SearchSquare(props: Props) {
     style += "drop-shadow-xl border-slate-50 animate-beat ";
   }
 
-  // if (props.submitted) {
-  //   style += "animate-submit";
-  // }
+  if (props.submitted) {
+    style += "animate-submit";
+  }
 
   return (
     <div className={style}>

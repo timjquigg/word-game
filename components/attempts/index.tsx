@@ -38,5 +38,6 @@ export default function Attempts() {
     updateSolved("yes");
   }
 
-  return <div>{solved === "incomplete" && answer && attemptList}</div>;
+  // return <div>{solved === "incomplete" && answer && attemptList}</div>;
+  return <div>{answer && !check && attempts.length < 6 && attemptList}</div>;
 }
