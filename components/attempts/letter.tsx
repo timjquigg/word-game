@@ -5,16 +5,16 @@ type Props = {
 
 export default function Letter(props: Props) {
   let style =
-    "w-7 h-7 rounded-lg flex justify-center items-center ease-in-out ";
+    "w-7 h-7 rounded-lg flex justify-center items-center ease-in-out shadow-md ";
   switch (Object.values(props.letter)[0]) {
     case "correct":
-      style += "bg-green-500 ";
+      style += "text-neutral-100 bg-green-500 shadow-green-900 ";
       break;
     case "absent":
-      style += "bg-red-500 ";
+      style += "text-neutral-100 bg-red-500 shadow-red-900 ";
       break;
     case "present":
-      style += "bg-yellow-500 ";
+      style += "bg-yellow-500 shadow-yellow-900 ";
       break;
     default:
       style += "";

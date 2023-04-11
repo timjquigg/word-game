@@ -58,6 +58,9 @@ export default function SearchSquare(props: Props) {
   }, [focus, props.id]);
 
   const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key === "Backspace") {
+      updateFocus(-1);
+    }
     const letter = e.key.toUpperCase();
     if (isLetter(letter)) {
       updateInput(letter);

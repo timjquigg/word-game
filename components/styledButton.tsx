@@ -17,7 +17,7 @@ interface Style {
 
 export default function StyledButton(props: Props) {
   const [clicked, setClicked] = useState(false);
-  const [className, setClassName] = useState("hidden");
+  const [className, setClassName] = useState("");
   const [style, setStyle] = useState<Style>({ top: "0px", left: "0px" });
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function StyledButton(props: Props) {
   };
 
   const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
     // Safari on iOs does not support vibrate :(
     window?.navigator?.vibrate?.(50);
 
@@ -62,7 +63,9 @@ export default function StyledButton(props: Props) {
       onClick={(event) => clickHandler(event)}
       autoFocus={false}
       disabled={props.disabled}
-      className={`relative overflow-hidden uppercase tracking-wider drop-shadow-md opacity-90 hover:scale-105 hover:opacity-100 hover:drop-shadow-xl focus:opacity-100 focus:scale-105 focus:drop-shadow-xl focus:outline-none  ${props.classes}`}
+      className={`relative overflow-hidden uppercase tracking-wider opacity-80 shadow-md my-auto 
+      hover:opacity-100 hover:scale-110 hover:shadow-xl hover:outline-none
+      focus:opacity-100 focus:scale-110 focus:shadow-xl focus:outline-none ${props.classes} `}
     >
       {props.children}
       <span className={className} style={style}></span>
