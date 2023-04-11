@@ -55,23 +55,23 @@ export default function Search() {
       {solved === "incomplete" && !answer && <Loading />}
       {solved === "incomplete" && answer && (
         <div className="flex flex-col justify-center content-center text-center space-y-3">
-          <div className="flex flex-row justify-center items-center space-x-3 my-3 ">
+          <div className="flex flex-row justify-center items-center space-x-3  ">
             {searchSquares}
           </div>
           {error && <p>No cheating! Please enter a real word</p>}
           <div className="absolute inset-x-0 bottom-20">
             <Keyboard />
-            <div className="flex flex-row justify-center space-x-3 my-3">
+            <div className="flex flex-row justify-center content-center space-x-3 my-3">
               <StyledButton
                 id="backspace"
-                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                classes="text-neutral-200 bg-blue-600 rounded-lg h-fit min-w-[10rem] p-2 shadow-blue-900 focus:shadow-blue-900 hover:shadow-blue-900"
                 callback={backSpace}
               >
                 Backspace
               </StyledButton>
               <StyledButton
                 id="submit"
-                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                classes="text-neutral-200 bg-blue-600 rounded-lg h-fit min-w-[10rem] p-2 shadow-blue-900 focus:shadow-blue-900 hover:shadow-blue-900"
                 callback={submit}
               >
                 Submit
@@ -80,7 +80,7 @@ export default function Search() {
             <div>
               <StyledButton
                 id="quit"
-                classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+                classes="text-neutral-200 bg-blue-600 rounded-lg h-fit min-w-[10rem] p-2 shadow-blue-900 focus:shadow-blue-900 hover:shadow-blue-900"
                 callback={giveUp}
               >
                 Give Up

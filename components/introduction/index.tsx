@@ -80,7 +80,7 @@ export default function Introduction() {
           <div className="mx-auto mt-8">
             <StyledButton
               id="playGame"
-              classes="bg-blue-500 rounded-lg min-w-[10rem] p-2"
+              classes="text-neutral-200 bg-blue-600 rounded-lg h-fit min-w-[10rem] p-2 shadow-blue-900 focus:shadow-blue-900 hover:shadow-blue-900"
               callback={playGame}
             >
               Play
