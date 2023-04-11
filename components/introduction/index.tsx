@@ -37,9 +37,14 @@ export default function Introduction() {
             </li>
             <li>
               <p>
+                Letters can be typed using onscreen keyboard or physical
+                keyboard if present.
+              </p>
+            </li>
+            <li>
+              <p>
                 After each attempt you will be given feedback on your guess.
               </p>
-              {/* <div className=""> */}
               <ol className="list-none space-y-3 mt-3 ">
                 <li className="flex flex-row space-x-3 content-center">
                   <div className="my-auto">
@@ -69,7 +74,6 @@ export default function Introduction() {
                   </p>
                 </li>
               </ol>
-              {/* </div> */}
             </li>
           </ol>
 

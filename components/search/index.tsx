@@ -9,10 +9,10 @@ import Keyboard from "./keyboard";
 import Loading from "@/components/search/loading";
 
 export default function Search() {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [submitted, setSutmitted] = useState(false);
   const { answer } = useContext(answerContext);
-  const { submitInput, updateFocus, resetFocus, fullReset } =
+  const { input, submitInput, updateFocus, resetFocus, fullReset } =
     useContext(inputContext);
   const { solved, updateSolved } = useContext(attemptsContext);
   const searchSquares = Array(5)
@@ -22,16 +22,20 @@ export default function Search() {
     });
 
   const submit = () => {
+    if (input.join("").length < answer.length) {
+      setError("Please enter 5 letter word");
+      return;
+    }
     setSutmitted(true);
     submitInput()
       .then(() => {
         setSutmitted(false);
         resetFocus();
-        setError(false);
+        setError("");
       })
       .catch((err) => {
         setSutmitted(false);
-        setError(true);
+        setError("No cheating! Please enter a real word");
         resetFocus();
         console.log(err);
       });
