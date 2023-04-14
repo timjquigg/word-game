@@ -2,10 +2,7 @@ export default function checkWord(
   guess: Letter[],
   target: string
 ): LetterCheck[] {
-  const targetArr = target.split("");
   const responseObj: ResponseObject = {};
-  const guessOccurences: Occurences = {};
-  const targetOccurences: Occurences = {};
 
   // checkObj will contain keys for each letter that exists in the target word. The values will be indices of the target that those letters exist and the indices of the guess where that letter exists.
   const checkObj: Check = {};
@@ -26,31 +23,30 @@ export default function checkWord(
     }
   }
 
+  const used: number[] = [];
+
   // Loop through each letter in the checkObj and compare target values & guess values
   for (const letter of Object.keys(checkObj)) {
-    // Index for guess array
-    let i = 0;
-    const used: number[] = [];
+    // find all instances where the guess has a letter from the target at the same index
     for (const index of checkObj[letter].target) {
-      // If the guess includes this letter at the same index
       if (checkObj[letter].guess.includes(index)) {
         responseObj[String(index)] = {};
         responseObj[String(index)][letter] = "correct";
         used.push(index);
-        i++;
-        continue;
       }
     }
 
+    // find all instances where the guess has a letter from the target at a different index
     for (const index of checkObj[letter].target) {
-      // If the guess includes this letter but at a different index
-      if (used.indexOf(index) < 0) {
-        if (i < checkObj[letter].guess.length) {
-          responseObj[String(checkObj[letter].guess[i])] = {};
-          responseObj[String(checkObj[letter].guess[i])][letter] = "present";
+      if (checkObj[letter].guess.includes(index) || used.includes(index)) {
+        continue;
+      }
+      for (const guessIndex of checkObj[letter].guess) {
+        if (!responseObj[String(guessIndex)]) {
+          responseObj[String(guessIndex)] = {};
+          responseObj[String(guessIndex)][letter] = "present";
           used.push(index);
-          i++;
-          continue;
+          break;
         }
       }
     }
